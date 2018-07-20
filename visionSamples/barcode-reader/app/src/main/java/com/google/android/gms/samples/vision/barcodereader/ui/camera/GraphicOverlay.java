@@ -17,6 +17,7 @@ package com.google.android.gms.samples.vision.barcodereader.ui.camera;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -113,6 +114,17 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
          */
         public float translateY(float y) {
             return scaleY(y);
+        }
+
+        public RectF translateRect(RectF inputRect) {
+            RectF returnRect = new RectF();
+
+            returnRect.left = translateX(inputRect.left);
+            returnRect.top = translateY(inputRect.top);
+            returnRect.right = translateX(inputRect.right);
+            returnRect.bottom = translateY(inputRect.bottom);
+
+            return returnRect;
         }
 
         public void postInvalidate() {
